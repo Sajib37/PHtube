@@ -31,12 +31,17 @@ const showData =async (id) => {
         const div = document.createElement('div');
         div.innerHTML = `
         <div class="card card-compact max-w-xs bg-base-100 shadow-xl mx-auto rounded-none">
-            <figure ><img class="w-full h-[200px] rounded-none" src="${content.thumbnail}" alt="Shoes" /></figure>
+            <figure class="relative" >
+                <img class="w-full h-[200px] rounded-none" src="${content.thumbnail}" alt="Shoes" />
+                <p class="text-xs text-white  bg-black inline absolute bottom-0 right-0">${timeConverter(content.others?.posted_date)}</p>
+            </figure>
             <div class="card-body p-0">
-              <div class="flex items-center gap-1">
+              <div class="flex  gap-4">
                 <div><img class="w-[40px] h-[40px] rounded-full" src="${content.authors[0].profile_picture}" alt=""></div>
-                <div><h1 class="font-bold ">${content.title}</h1></div>
+                <div><h1 class="font-bold text-base">${content.title}</h1></div>
               </div>
+              <p class="text-gray-400 text-sm">${content.authors[0].profile_name} ${content.authors[0].verified===true? '<i class="fa-solid fa-certificate text-[#2568EF]"></i>':''}</p>
+              <p class="text-gray-400 text-sm"> ${content.others?.views} views</p>
             </div>
         </div>
         `
@@ -44,4 +49,21 @@ const showData =async (id) => {
     })
 }
 
+// function for time coverter (sec to min and hour)
+const timeConverter = (sec) => {
+    console.log(sec)
+    let second = sec;
+    let hour = Math.floor(second / 3600);
+    let reminderSec = second % 3600;
+    let min = Math.floor(reminderSec / 60);
+    if (sec == 0 || sec == null || sec == undefined) {
+        return '';
+    }
+    else {
+        return hour + " Hrs " + min + " Mins ago";
+    } 
+}
+console.log(timeConverter(3680));
 handleCatagories();
+// for default shows in a screen
+showData(1001)
