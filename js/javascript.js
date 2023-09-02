@@ -51,7 +51,7 @@ const createCard = (data) => {
                 <img class="w-full h-[200px] rounded-none" src="${
                     content.thumbnail
                 }" alt="Shoes" />
-                <p id="timeContainer" class="text-xs text-white  bg-black inline absolute bottom-0 right-0">${timeConverter(
+                <p  class="text-xs text-white  bg-black inline absolute bottom-0 right-0">${timeConverter(
                     content.others?.posted_date
                 )}</p>
             </figure>
